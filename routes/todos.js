@@ -6,7 +6,7 @@ Todo = require('../models/Todo');
 router.get('/', function(req, res, next) {
 	Todo.find({ completed: false }, function(err, todos){
         if(err) res.render('error', { error: 'Could not fetch items from database'});
-        console.log(todos);
+        // console.log(todos);
         res.render('todos', { todos: todos });
     });
 });
