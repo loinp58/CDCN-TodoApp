@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	.container
+		.row
+			h1= title
+			#main
+				a(href='/todos', id='todoBtn').btn.btn-success.btn-lg View all todos
+				a(href='/todos/completed', id='completedBtn').btn.btn-primary.btn-lg View all completed
+  

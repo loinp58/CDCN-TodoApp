@@ -1,0 +1,27 @@
+extends layout
+
+block content
+	h1.text-center All Todos
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				a(href='/') 
+					span.glyphicon.glyphicon-chevron-left
+						| Back
+				.panel.panel-default
+					for todo in todos
+						.panel-body
+							h4 #{todo.content}
+							p Start at: #{moment(todo.start).format('HH:mm DD/MM/YYYY')}
+							a(href='./todos/#{todo._id}')
+								button.btn.btn-primary
+									| Edit
+							form(action='/todos/destroy/#{todo._id}', method='post')
+								input.btn.btn-danger.pull-right(type='submit', value='Delete')
+							form(action='/todos/mark/#{todo._id}', method='post')
+								input.btn.btn-success.pull-right(type='submit', value='Completed')
+				form(method='post', action='/todos/create')
+					.input-group
+						input.form-control(type='text', placeholder='What do you have to do?', name='content')
+						span.input-group-btn
+							input.btn.btn-success(type='submit', value='Add Todo')

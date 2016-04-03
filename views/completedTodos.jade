@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	h1.text-center All Completed Todos
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				a(href='/') 
+					span.glyphicon.glyphicon-chevron-left
+						| Back
+				.panel.panel-default
+					for compTodo in compTodos
+						.panel-body
+							h4 #{compTodo.content}
+							p Finish at: #{moment(compTodo.finish).format('HH:mm DD/MM/YYYY')}
+							form(action='/todos/destroy/#{compTodo._id}', method='post')
+								input.btn.btn-danger.pull-right(type='submit', value='Delete')
