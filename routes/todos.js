@@ -28,6 +28,9 @@ router.get('/:id', function(req, res, next) {
 router.post('/create', function(req, res, next) {
 	var todoContent = req.body.content;
     // create todo
+    if (todoContent.length == 0) {
+        res.redirect('/todos');
+    } else
     Todo.create({ content: todoContent }, function(err, todo){
         if(err) res.render('error', { error: 'Error creating your todo'})
         // reseload collection
